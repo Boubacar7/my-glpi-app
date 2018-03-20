@@ -36,7 +36,7 @@ RUN cd /var/www/html/ && \
 #chmod 777 glpi-${GLPI_VERSION}/files &&  \
 #chmod 777 glpi-${GLPI_VERSION}/config && \
   
-#si besoin de reconfigurer le fichier de configue de httpd
+#si besoin de reconfigurer le fichier de configuration de httpd
 #COPY httpd.conf /etc/httpd/conf
 
 EXPOSE 80 443
