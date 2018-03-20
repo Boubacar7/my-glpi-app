@@ -4,8 +4,12 @@ MAINTAINER Boubacar <ouedraogoboubacar30@gmail.com>
 #install GLPI
 
 ENV DEBIAN_FRONTEND noninteractive
+
+#Afin de faciliter l'installation de nouvelles versions de GLPI
+
 ENV GLPI_VERSION=9.2.2
 ENV GLPI_URL=https://github.com/glpi-project/glpi/releases/download/$GLPI_VERSION/glpi-$GLPI_VERSION.tgz
+
 WORKDIR /home/
 
 RUN yum update -y && yum upgrade -y \
@@ -31,8 +35,9 @@ RUN cd /var/www/html/ && \
 
 #chmod 777 glpi-${GLPI_VERSION}/files &&  \
 #chmod 777 glpi-${GLPI_VERSION}/config && \
-    
-COPY httpd.conf /etc/httpd/conf
+  
+#si besoin de reconfigurer le fichier de configue de httpd
+#COPY httpd.conf /etc/httpd/conf
 
 EXPOSE 80 443
 
