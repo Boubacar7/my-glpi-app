@@ -1,0 +1,13 @@
+FROM mariadb:latest
+MAINTAINER Boubacar <ouedraogoboubacar30@gmail.com>
+
+VOLUME ["/var/lib/mysql"]
+
+ENV MYSQL_ROOT_PASSORD=admin
+
+COPY doc.sql /docker-entrypoint-initdb.d/
+EXPOSE 3306
+
+#start mariadb
+#RUN systemctl start mariadb.service
+#RUN mysql -u root -p$MYSQL_ROOT_PASSWORD < /docker-entrypoint-initdb.d/doc.sql
