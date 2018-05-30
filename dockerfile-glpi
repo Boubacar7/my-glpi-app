@@ -3,7 +3,7 @@ MAINTAINER Boubacar <ouedraogoboubacar30@gmail.com>
 
 #install GLPI
 
-ENV http_proxy https://192.168.232.1:3128
+#ENV http_proxy https://xxx.xxx.xxx.xxx
 ENV DEBIAN_FRONTEND noninteractive
 
 #Afin de faciliter l'installation de nouvelles versions de GLPI
