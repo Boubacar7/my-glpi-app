@@ -1,7 +1,7 @@
 FROM centos:latest
 MAINTAINER Boubacar <ouedraogoboubacar30@gmail.com>
 
-#install GLPI
+##install GLPI
 
 #ENV http_proxy https://xxx.xxx.xxx.xxx
 ENV DEBIAN_FRONTEND noninteractive
