@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: glpi
+  labels:
+    app: glpi
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: glpi
+    tier: frontend
+  type: NodePort
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: glpi-pv-claim
+  labels:
+    app: glpi
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: apps/v1ions before 1.9.0 use apps/v1beta2  and before 1.8.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: glpi
+  labels:
+    app: glpi
+spec:
+  selector:
+    matchLabels:
+      app: glpi
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: glpi
+        tier: frontend
+    spec:
+      containers:
+      - image: 192.168.99.1:5000/jenkins-glpi
+        name: glpi
+        ports:
+        - containerPort: 80
+          name: glpi
+        volumeMounts:
+        - name: glpi-persistent-storage
+          mountPath: "/var/www/html/config"
+          subPath: config
+      volumes:
+      - name: glpi-persistent-storage
+        persistentVolumeClaim:
+          claimName: glpi-pv-claim
+      imagePullSecrets:
+      - name: registrycredential
